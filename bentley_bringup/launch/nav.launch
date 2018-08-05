@@ -1,0 +1,13 @@
+<launch>
+  
+   <!-- camera -->
+  <include file="$(find bentley_bringup)/launch/camera.launch"/>
+
+  <!-- AMCL -->
+  <include file="$(find bentley_bringup)/launch/amcl.launch"/>
+
+  <!-- move_base -->
+  <include file="$(find bentley_bringup)/launch/move_base.launch"/>
+    
+
+</launch>

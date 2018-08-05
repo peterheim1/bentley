@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+
+<!-- XML namespaces -->
+  <robot name="max" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="PI" value="3.1415" />  
+    <xacro:property name="M_PI" value="3.14159"/>
+    <xacro:property name="M_SCALE" value="0.001"/>
+    <xacro:property name="MESH_EXT" value="stl"/>
+    <xacro:include filename="$(find bentley_description)/urdf/hardware.xacro" />
+    
+ <link name="base_footprint">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.05 0.05 0.001" />
+        </geometry>
+        <material name="TransparentGreen" />
+      </visual>
+  </link>
+
+<link name="base" >
+   <visual>
+      <geometry>
+        <mesh filename="package://bentley_description/meshes/bentley_base.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+      </geometry>
+         <xacro:yellow2/>
+      <origin rpy="0 0 -1.57" xyz="-0.08 0 0"/>
+    </visual>
+    <collision>
+        <origin xyz="-0.01 0 0.035" rpy="0 0 0" />
+        <geometry>
+          <box size="0.28 0.22 0.17" />-
+          </geometry>
+      </collision>
+  </link>
+
+<link name="torso" >
+   <visual>
+      <geometry>
+        <mesh filename="package://bentley_description/meshes/bentley_torso.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+      </geometry>
+         <xacro:yellow2/>
+      <origin rpy="0 0 0" xyz="0. 0.02 0.18"/>
+    </visual>
+    <collision>
+        <origin xyz="-0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.28 0.22 0.17" />-
+          </geometry>
+      </collision>
+  </link>
+
+<link name="head" >
+   <visual>
+      <geometry>
+        <mesh filename="package://bentley_description/meshes/head1.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+      </geometry>
+         <xacro:yellow2/>
+      <origin rpy="0 0 0" xyz="0. 0. 0."/>
+    </visual>
+    <collision>
+        <origin xyz="-0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.28 0.22 0.17" />-
+          </geometry>
+      </collision>
+  </link>
+
+
+<link name="pan">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.03 0.03 0.03" />
+        </geometry>
+        <material name="black" />
+      </visual>
+  </link>
+
+<link name="tilt">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.03 0.03 0.03" />
+        </geometry>
+        <material name="white" />
+      </visual>
+  </link>
+
+
+<!-- ##############################   joints ##################333333--> 
+    
+ <joint name="base_joint" type="fixed">
+    	<parent link="base_footprint" />
+    	<child link="base" />
+    	<origin xyz="-0 0 0.038" rpy="0 0 0" />
+	</joint> 
+
+<joint name="torso_joint" type="revolute">
+    	<parent link="base" />
+    	<child link="torso" />
+    	<origin xyz="-0 0 0.12" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="0" />
+	</joint> 
+
+<joint name="head_pan_joint" type="revolute">
+    	<parent link="torso" />
+    	<child link="pan" />
+    	<origin xyz="-0 0 0.21" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="0" />
+	</joint>
+
+<joint name="head_tilt_joint" type="revolute">
+    	<parent link="pan" />
+    	<child link="tilt" />
+    	<origin xyz="-0 0 0" rpy="0 0 0" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="0" />
+	</joint>  
+
+ <joint name="head_joint" type="fixed">
+    	<parent link="tilt" />
+    	<child link="head" />
+    	<origin xyz="-0 0 0.04" rpy="0 0 0" />
+	</joint> 
+
+</robot>

@@ -1,0 +1,384 @@
+<?xml version="1.0"?>
+
+<!-- XML namespaces -->
+  <robot name="max" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="PI" value="3.1415" />  
+    <xacro:property name="M_PI" value="3.14159"/>
+    <xacro:property name="M_SCALE" value="0.001"/>
+    <xacro:property name="MESH_EXT" value="stl"/>
+    <xacro:include filename="$(find bentley_description)/urdf/hardware.xacro" />
+    
+ <link name="base_footprint">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.05 0.05 0.001" />
+        </geometry>
+        <material name="TransparentGreen" />
+      </visual>
+  </link>
+
+<link name="base" >
+   <visual>
+      <geometry>
+        <mesh filename="package://bentley_description/meshes/bentley_base.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+      </geometry>
+         <xacro:yellow2/>
+      <origin rpy="0 0 -1.57" xyz="-0.08 0 0"/>
+    </visual>
+    <collision>
+        <origin xyz="-.08 0 0" rpy="0 0 -1.57" />
+        <geometry>
+          <mesh filename="package://bentley_description/meshes/bentley_base_coll2.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>-
+          </geometry>
+      </collision>
+  </link>
+
+<link name="torso" >
+   <visual>
+      <geometry>
+        <mesh filename="package://bentley_description/meshes/bentley_torso.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+      </geometry>
+         <xacro:yellow2/>
+      <origin rpy="0 0 0" xyz="0. 0.02 0.18"/>
+    </visual>
+    <collision>
+        <origin rpy="0 0 0" xyz="0. 0.02 0.18"/>
+        <geometry>
+           <mesh filename="package://bentley_description/meshes/bentley_torso_coll.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+          </geometry>
+      </collision>
+  </link>
+
+<link name="head" >
+   <visual>
+      <geometry>
+        <mesh filename="package://bentley_description/meshes/head1.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+      </geometry>
+         <xacro:yellow2/>
+      <origin rpy="0 0 0" xyz="0. 0. 0."/>
+    </visual>
+    <collision>
+        <origin xyz="-0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://bentley_description/meshes/head1.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+          </geometry>
+      </collision>
+  </link>
+
+
+<link name="pan">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.03 0.03 0.03" />
+        </geometry>
+        <material name="black" />
+      </visual>
+  </link>
+
+<link name="tilt">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.03 0.03 0.03" />
+        </geometry>
+        <material name="white" />
+      </visual>
+  </link>
+
+<!--###########right arm  #####################-->
+
+<!--right arm-->
+<xacro:my_cylinder name="right_shoulder" l="0.005" r="0.04" xyz="0 0 0" rpy="1.56 0 0" mass="0.1" material="Gazebo/Grey">
+		<xacro:grey1 />
+	</xacro:my_cylinder>
+
+<link name="right_shoulder_link" >
+   <visual>
+      <geometry>
+        <mesh filename="package://r1/meshes/gizmo_lift.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+      </geometry>
+         <xacro:yellow2/>
+      <origin rpy="-1.57 0 0" xyz=" 0 0 0"/>
+    </visual>
+    <xacro:default_inertial mass="1.0" />
+    <collision>
+        <origin rpy="-1.57 0 0" xyz=" 0 0 0"/>
+        <geometry>
+          <mesh filename="package://r1/meshes/gizmo_lift.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+          </geometry>
+      </collision>
+  </link>
+
+<xacro:my_box name="right_robo_servo" lwh="0.04 0.02 0.04" xyz="0.02 0 0" rpy="0 0 0" mass="0.1" material="Gazebo/FlatBlack">
+		<xacro:black />
+	</xacro:my_box>
+
+<xacro:my_box name="right_robo_servo2" lwh="0.04 0.02 0.04" xyz="0.02 0 0" rpy="0 0 0" mass="0.1" material="Gazebo/FlatBlack">
+		<xacro:black />
+	</xacro:my_box>
+
+<xacro:my_box name="right_rotate_servo" lwh="0.02 0.02 0.02" xyz="0.0 0 0" rpy="0 0 0" mass="0.1" material="Gazebo/FlatBlack">
+		<xacro:black />
+	</xacro:my_box>
+
+<xacro:my_cylinder name="right_servo_bracket" l="0.085" r="0.01" xyz="0 0 0" rpy="0 1.57 0" mass="0.1" material="Gazebo/Grey">
+		<xacro:grey1 />
+	</xacro:my_cylinder>
+
+
+<!--###########left arm  #####################-->
+
+<!--left arm-->
+<xacro:my_cylinder name="left_shoulder" l="0.005" r="0.04" xyz="0 0 0" rpy="1.56 0 0" mass="0.1" material="Gazebo/Grey">
+		<xacro:grey1 />
+	</xacro:my_cylinder>
+
+<link name="left_shoulder_link" >
+   <visual>
+      <geometry>
+        <mesh filename="package://r1/meshes/gizmo_lift.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+      </geometry>
+         <xacro:yellow2/>
+      <origin rpy="1.57 0 0" xyz=" 0 0 0"/>
+    </visual>
+    <xacro:default_inertial mass="1.0" />
+   <collision>
+        <origin rpy="1.57 0 0" xyz=" 0 0 0"/>
+        <geometry>
+          <mesh filename="package://r1/meshes/gizmo_lift.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+          </geometry>
+      </collision>
+  </link>
+
+<xacro:my_box name="left_robo_servo" lwh="0.04 0.02 0.04" xyz="0.02 0 0" rpy="0 0 0" mass="0.1" material="Gazebo/FlatBlack">
+		<xacro:black />
+	</xacro:my_box>
+
+<xacro:my_box name="left_robo_servo2" lwh="0.04 0.02 0.04" xyz="0.02 0 0" rpy="0 0 0" mass="0.1" material="Gazebo/FlatBlack">
+		<xacro:black />
+	</xacro:my_box>
+
+<xacro:my_box name="left_rotate_servo" lwh="0.02 0.02 0.02" xyz="0.0 0 0" rpy="0 0 0" mass="0.1" material="Gazebo/FlatBlack">
+		<xacro:black />
+	</xacro:my_box>
+
+<xacro:my_cylinder name="left_servo_bracket" l="0.085" r="0.01" xyz="0 0 0" rpy="0 1.57 0" mass="0.1" material="Gazebo/Grey">
+		<xacro:grey1 />
+	</xacro:my_cylinder>
+
+<!--###################33   right gripper #########################-->
+<!-- right Gripper_joint-->
+  <xacro:ax12 name="right_gripper_servo" xyz="0 0 0" rpy="1.57 0 0" />
+  <!--<xacro:F2_bracket name="right_gripper_bracket_f2" xyz="0 0 0" rpy="1.57 0 0" />-->
+
+  <xacro:my_box name="right_r_finger_link" lwh="-0.05 0.005 0.015" xyz="-0.03 0 0" rpy="0 0 0" mass="0.1" material="Gazebo/FlatBlack">
+	        <xacro:blue1 />
+        </xacro:my_box>
+
+
+  <xacro:my_box name="right_l_finger_link" lwh="0.05 0.005 0.015" xyz="-0.03 0 0" rpy="0 0 0" mass="0.1" material="Gazebo/FlatBlack">
+	        <xacro:grey3/>
+        </xacro:my_box>
+
+<!--###################33   left gripper #########################-->
+<!-- left Gripper_joint-->
+  <xacro:ax12 name="left_gripper_servo" xyz="0 0 0" rpy="1.57 0 0" />
+  <!--<xacro:F2_bracket name="left_gripper_bracket_f2" xyz="0 0 0" rpy="1.57 0 0" />-->
+
+  <xacro:my_box name="left_r_finger_link" lwh="-0.05 0.005 0.015" xyz="-0.03 0 0" rpy="0 0 0" mass="0.1" material="Gazebo/FlatBlack">
+	        <xacro:blue1 />
+        </xacro:my_box>
+
+
+  <xacro:my_box name="left_l_finger_link" lwh="0.05 0.005 0.015" xyz="-0.03 0 0" rpy="0 0 0" mass="0.1" material="Gazebo/FlatBlack">
+	        <xacro:grey3/>
+        </xacro:my_box>
+
+
+
+<!-- ##############################   joints ##################333333--> 
+    
+ <joint name="base_joint" type="fixed">
+    	<parent link="base_footprint" />
+    	<child link="base" />
+    	<origin xyz="-0 0 0.038" rpy="0 0 0" />
+	</joint> 
+
+<joint name="torso_joint" type="revolute">
+    	<parent link="base" />
+    	<child link="torso" />
+    	<origin xyz="-0 0 0.12" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="0" />
+	</joint> 
+
+<joint name="head_pan_joint" type="revolute">
+    	<parent link="torso" />
+    	<child link="pan" />
+    	<origin xyz="-0 0 0.21" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="0" />
+	</joint>
+
+<joint name="head_tilt_joint" type="revolute">
+    	<parent link="pan" />
+    	<child link="tilt" />
+    	<origin xyz="-0 0 0" rpy="0 0 0" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="0" />
+	</joint>  
+
+ <joint name="head_joint" type="fixed">
+    	<parent link="tilt" />
+    	<child link="head" />
+    	<origin xyz="-0 0 0.04" rpy="0 0 0" />
+	</joint> 
+<!--  ##############  arm joints#################-->
+  <joint name="right_arm_joint" type="fixed">
+    	<parent link="torso" />
+    	<child link="right_shoulder" />
+    	<origin xyz="0 -0.08 0.15" rpy="0 0 0" />
+  </joint>
+
+<joint name="left_arm_joint" type="fixed">
+    	<parent link="torso" />
+    	<child link="left_shoulder" />
+    	<origin xyz="0 0.08 0.15" rpy="0 0 0" />
+  </joint> 
+
+<joint name="right_shoulder_joint" type="revolute">
+    	<parent link="right_shoulder" />
+    	<child link="right_shoulder_link" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="0" />
+    	<origin xyz="0.005 -0.025 0" rpy="0 0 0" />
+  </joint>
+
+<joint name="left_shoulder_joint" type="revolute">
+    	<parent link="left_shoulder" />
+    	<child link="left_shoulder_link" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="0" />
+    	<origin xyz="0.005 0.025 0" rpy="0 0 0" />
+  </joint>
+
+<joint name="right_s1_joint" type="revolute">
+    	<parent link="right_shoulder_link" />
+    	<child link="right_robo_servo" />
+    	<origin xyz="0.01 -0.015 0" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="0" />
+  </joint> 
+
+<joint name="left_s1_joint" type="revolute">
+    	<parent link="left_shoulder_link" />
+    	<child link="left_robo_servo" />
+    	<origin xyz="0.01 0.01 0" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="0" />
+  </joint> 
+
+<joint name="right_s2_link" type="fixed">
+    	<parent link="right_robo_servo" />
+    	<child link="right_servo_bracket" />
+    	<origin xyz="0.085 0 0" rpy="0 0 0" />
+  </joint> 
+
+<joint name="right_s2_joint" type="revolute">
+    	<parent link="right_servo_bracket" />
+    	<child link="right_robo_servo2" />
+    	<origin xyz="0.04 0 0" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="0" />
+  </joint> 
+
+<joint name="right_s3_joint" type="revolute">
+    	<parent link="right_robo_servo2" />
+    	<child link="right_rotate_servo" />
+    	<origin xyz="0.045 0 0" rpy="0 0 0" />
+        <axis xyz="1 0 0" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="0" />
+  </joint> 
+
+<joint name="right_arm_gripper_bracket" type="fixed">
+    	<parent link="right_rotate_servo" />
+    	<child link="right_gripper_servo" />
+    	<origin xyz="0.04 0 0.0" rpy="0 0 0" /><!--now-->
+	</joint> 
+
+<!-- gripper_joint-->
+   <joint name="right_arm_gripper_joint" type="revolute">
+    	<parent link="right_rotate_servo" />
+    	<child link="right_gripper_servo" />
+    	<origin xyz="0 0.0 0.0" rpy="3.14159 0 0" />
+        <axis xyz="0 0 1" />
+    	<limit lower="-0.5" upper="0.40" effort="10" velocity="1" />
+      	<dynamics damping="0.0"/>
+	</joint> 
+
+
+
+  <joint name="right_arm_finger_link_l" type="fixed">
+    	<parent link="right_gripper_servo" />
+    	<child link="right_l_finger_link" />
+    	<origin xyz="0.05 -0.01 0" rpy="0 0 0" />     
+	</joint> 
+
+<!-- moving finger   ############-->
+  <joint name="right_arm_finger_link_r" type="fixed">
+    	<parent link="right_rotate_servo" />
+    	<child link="right_r_finger_link" />
+    	<origin xyz="0.05 -0.01 0" rpy="0 0 0" />
+	</joint>
+
+<joint name="left_s2_link" type="fixed">
+    	<parent link="left_robo_servo" />
+    	<child link="left_servo_bracket" />
+    	<origin xyz="0.085 0 0" rpy="0 0 0" />
+  </joint> 
+
+<joint name="left_s2_joint" type="revolute">
+    	<parent link="left_servo_bracket" />
+    	<child link="left_robo_servo2" />
+    	<origin xyz="0.04 0 0" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="0" />
+  </joint> 
+
+<joint name="left_s3_joint" type="revolute">
+    	<parent link="left_robo_servo2" />
+    	<child link="left_rotate_servo" />
+    	<origin xyz="0.045 0 0" rpy="0 0 0" />
+        <axis xyz="1 0 0" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="0" />
+  </joint> 
+
+<!-- gripper_joint-->
+   <joint name="left_arm_gripper_joint" type="revolute">
+    	<parent link="left_rotate_servo" />
+    	<child link="left_gripper_servo" />
+    	<origin xyz="0 0.0 0.0" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+    	<limit lower="-0.5" upper="0.40" effort="10" velocity="1" />
+      	<dynamics damping="0.0"/>
+	</joint> 
+
+
+
+  <joint name="left_arm_finger_link_l" type="fixed">
+    	<parent link="left_gripper_servo" />
+    	<child link="left_l_finger_link" />
+    	<origin xyz="0.05 0.02 0" rpy="0 0 0" />     
+	</joint> 
+
+<!-- moving finger   ############-->
+  <joint name="left_arm_finger_link_r" type="fixed">
+    	<parent link="left_rotate_servo" />
+    	<child link="left_r_finger_link" />
+    	<origin xyz="0.05 -0.01 0" rpy="0 0 0" />
+	</joint>
+
+</robot>
