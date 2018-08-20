@@ -1,8 +1,8 @@
 <launch>
   
-   <!-- camera -->
+   <!-- camera 
   <include file="$(find bentley_bringup)/launch/camera.launch"/>
-
+-->
   <!-- AMCL -->
   <include file="$(find bentley_bringup)/launch/amcl.launch"/>
 

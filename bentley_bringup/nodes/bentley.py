@@ -166,6 +166,8 @@ class Arduino(object):
         #rospy.logwarn("recieved cmd")
         """ Handle movement requests. """
         x = twistCommand.linear.x  # m/s
+        if x > 0.3:
+            x = 0.3
         th = twistCommand.angular.z  # rad/s
         rospy.logwarn(th)
         if x == 0:

@@ -202,8 +202,8 @@ if __name__ == '__main__':
 		driver = Driver()
 		velocityLogger.start()
 
-		#driver.driveX(distance = 1.0, speed = 0.15);
-		driver.turn(angle = -0.5 * math.pi, angularSpeed = 0.5);#90 degrees left turn
+		driver.driveX(distance = 1.0, speed = 0.15);
+		#driver.turn(angle = -0.5 * math.pi, angularSpeed = 0.5);#90 degrees left turn
 		#driver.driveX(distance = 1.0, speed = 0.15);#
                 #driver.turn(angle = -0.5 * math.pi, angularSpeed = 0.5);#90 degrees right turn
 		#driver.driveX(distance = 1.0, speed = 0.15);

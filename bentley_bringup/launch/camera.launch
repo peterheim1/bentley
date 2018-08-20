@@ -13,5 +13,6 @@
     <param name="camera_frame_id" value="camera"/>
 
   </node>
-
+<!--republish compressed in:=/camera/image raw out:=/camera/image_raw
+<node name="republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/camera/image raw out:=/camera/image_raw" />-->
 </launch>
