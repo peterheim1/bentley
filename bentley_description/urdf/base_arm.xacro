@@ -98,7 +98,7 @@
 <link name="right_shoulder_link" >
    <visual>
       <geometry>
-        <mesh filename="package://r1/meshes/gizmo_lift.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+        <mesh filename="package://bentley/meshes/gizmo_lift.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
       </geometry>
          <xacro:yellow2/>
       <origin rpy="-1.57 0 0" xyz=" 0 0 0"/>
@@ -107,7 +107,7 @@
     <collision>
         <origin rpy="-1.57 0 0" xyz=" 0 0 0"/>
         <geometry>
-          <mesh filename="package://r1/meshes/gizmo_lift.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+          <mesh filename="package://bentley/meshes/gizmo_lift.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
           </geometry>
       </collision>
   </link>
@@ -139,7 +139,7 @@
 <link name="left_shoulder_link" >
    <visual>
       <geometry>
-        <mesh filename="package://r1/meshes/gizmo_lift.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+        <mesh filename="package://bentley/meshes/gizmo_lift.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
       </geometry>
          <xacro:yellow2/>
       <origin rpy="1.57 0 0" xyz=" 0 0 0"/>
@@ -148,7 +148,7 @@
    <collision>
         <origin rpy="1.57 0 0" xyz=" 0 0 0"/>
         <geometry>
-          <mesh filename="package://r1/meshes/gizmo_lift.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
+          <mesh filename="package://bentley/meshes/gizmo_lift.stl" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
           </geometry>
       </collision>
   </link>
