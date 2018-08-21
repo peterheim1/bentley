@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: bentley_description
+    relative_path: urdf/base_arm.xacro
+    xacro_args: "--inorder "
+  SRDF:
+    relative_path: config/max.srdf
+  CONFIG:
+    author_name: peter
+    author_email: peter@phoenix.com
+    generated_timestamp: 1531134607
